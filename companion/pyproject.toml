@@ -1,0 +1,17 @@
+# companion skill 自有引擎依赖。
+# init 时 `cd companion && uv sync` 建本 skill 自己的 .venv，scripts/ 跑在其上，完全自足。
+[project]
+name = "companion-skill"
+version = "0.2.0"
+requires-python = ">=3.11"
+dependencies = [
+  "feedparser>=6.0,<7",
+  "filelock>=3.16,<4",
+  "httpx>=0.25,<1",
+  "python-dateutil>=2.9,<3",
+  "pyyaml>=6.0.3,<7",
+  "requests>=2.32,<3",
+]
+
+[tool.uv]
+package = false

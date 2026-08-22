@@ -1,0 +1,6 @@
+form: skill
+declared_at: "2026-08-06"
+declared_by: ken
+reason: |
+  markdown skill 主体：SKILL.md + references/ 规则集 + scripts/ + user/ 运行时层，
+  消费方式是装载后由 Agent 按 SKILL.md 执行。机检四条硬条款全过。

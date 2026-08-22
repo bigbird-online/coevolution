@@ -1,0 +1,70 @@
+# companion 信源池【种子模板】—— init 时拷成用户自己的 user/sources.yaml。
+#
+# 这是【中性起点】，不是某个用户的成熟偏好池：
+#   - 不预设用户偏好（不堆 AI、不堆经济、不偏某个源/某种立场）
+#   - 个人作者为主（companion 验证过"个人作者优于机构"，但这是经验非强制）
+#   - 领域均衡铺开，覆盖面广而浅，让用户在【实际使用+反传】中长出自己的偏好池
+#   - 用户 init 后应按自己的 focus_domain 增删——种子只负责"能跑起来"，不负责"对味"
+#
+# 真正对味的信源池靠"用中迭代"长出来（companion 底线反传机制：每篇反传回信源/评分）。
+
+meta:
+  kind: seed_template
+  neutrality: "中性种子，无用户倾向；用户 init 后据 focus_domain 增删，靠反传迭代"
+  note: "覆盖面优先于精准；起点而非终点"
+
+sources:
+  # —— 科技 / AI 工程（个人作者，中高频）——
+  - name: Simon Willison
+    type: blog
+    url: https://simonwillison.net
+    rss_url: https://simonwillison.net/atom/everything/
+    content_type: LLM 工程实战、模型评测、工具开发
+    update_frequency: daily
+    tags: [tech, ai, engineering]
+  - name: Hacker News Frontpage
+    type: aggregator
+    url: https://news.ycombinator.com
+    rss_url: https://news.ycombinator.com/rss
+    content_type: 科技/创业/工程 社区头条
+    update_frequency: daily
+    tags: [tech, startup]
+
+  # —— 商业 / 战略（独立分析师）——
+  - name: Stratechery (Ben Thompson)
+    type: blog
+    url: https://stratechery.com
+    rss_url: https://stratechery.com/feed/
+    content_type: 科技商业战略分析
+    update_frequency: weekly
+    tags: [business, strategy]
+
+  # —— 思维 / 认知 / 决策 ——
+  - name: Astral Codex Ten (Scott Alexander)
+    type: blog
+    url: https://www.astralcodexten.com
+    rss_url: https://www.astralcodexten.com/feed
+    content_type: 认知、理性、跨学科长文
+    update_frequency: weekly
+    tags: [thinking, rationality]
+
+  # —— 经济 / 社会（一手观察）——
+  - name: Marginal Revolution (Tyler Cowen)
+    type: blog
+    url: https://marginalrevolution.com
+    rss_url: https://marginalrevolution.com/feed
+    content_type: 经济学、社会观察
+    update_frequency: daily
+    tags: [economics, society]
+
+  # —— 健康 / 科学（循证）——
+  - name: Science-Based Medicine
+    type: blog
+    url: https://sciencebasedmedicine.org
+    rss_url: https://sciencebasedmedicine.org/feed/
+    content_type: 循证医学、健康辟谣
+    update_frequency: weekly
+    tags: [health, science]
+
+# 用户 init 后在此基础上：删不关心的领域、加 focus_domain 内的 trust 源、
+# 标 avoid（不对味的源/立场）。每次伴读的反传会持续调整这个池子。

@@ -2,7 +2,7 @@
 """列出年度检查对照里已过期和快到期的检查。
 
 读 Markdown 表格里表头含「到期」的列。到期值写 YYYY、YYYY-MM 或 YYYY-MM-DD，
-分别表示最晚在这一年、这个月、这一天之内做；空着或写「—」的行不提醒。
+分别表示最晚在这一年、这个月、这一天之内做；写「待报告」的单列为等报告；空着或写「—」的行不提醒。
 
 用法：
   python3 scripts/due.py                       # 读 user/checkup-tracker.md
@@ -20,6 +20,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_TRACKER = ROOT / "user" / "checkup-tracker.md"
 SKIP_VALUES = {"", "—", "-", "–", "无"}
+PENDING_VALUES = {"待报告"}
 NAME_HINTS = ("检查", "信号", "项目")
 NEXT_HINTS = ("下一步",)
 
@@ -91,9 +92,11 @@ def scan(text):
 
 
 def report(rows, today, days):
-    overdue, soon, bad = [], [], []
+    overdue, soon, bad, pending = [], [], [], []
     for section, name, nxt, value, end in rows:
-        if end is None:
+        if value in PENDING_VALUES:
+            pending.append((name, nxt))
+        elif end is None:
             bad.append((section, name, value))
         elif end < today:
             overdue.append((end, name, nxt, value))
@@ -106,6 +109,9 @@ def report(rows, today, days):
     if soon:
         out.append(f"{days} 天内到期：")
         out += [f"  - {n}（到期 {v}）{'：' + x if x else ''}" for _, n, x, v in sorted(soon)]
+    if pending:
+        out.append("等报告（到手后照原件抄录，再填到期）：")
+        out += [f"  - {n}{'：' + x if x else ''}" for n, x in pending]
     if bad:
         out.append("看不懂的到期值（请改成 YYYY、YYYY-MM 或 YYYY-MM-DD）：")
         out += [f"  - [{s}] {n}：{v}" for s, n, v in bad]
@@ -127,9 +133,10 @@ def self_test():
 | 信号 | 首见 | 最近 | 下一步 | 到期 |
 |---|---|---|---|---|
 | 肺结节 | 2021 | 2024 | 复查 CT | 2026-11-30 |
+| APOE | 2026 | 已做 | 抄录 | 待报告 |
 """
     rows = scan(sample)
-    assert len(rows) == 5, rows
+    assert len(rows) == 6, rows
     assert deadline("2026") == dt.date(2026, 12, 31)
     assert deadline("2026-02") == dt.date(2026, 2, 28)
     assert deadline("2026-13") is None and deadline("2026-02-30") is None
@@ -138,6 +145,8 @@ def self_test():
     assert "肺结节" in text and "肠镜" in text, text
     assert "HbA1c" not in text and "Lp(a)" not in text, text
     assert "眼底：明年" in text, text
+    assert "等报告（到手后照原件抄录，再填到期）：\n  - APOE：抄录" in text, text
+    assert "APOE：待报告" not in text, text
     assert report([], dt.date(2026, 1, 1), 60) == "还没有写到期的检查。"
     later = "| 检查 | 到期 |\n|---|---|\n| HbA1c | 2030 |\n"
     assert report(scan(later), dt.date(2026, 1, 1), 60) == "60 天内没有到期的检查。"

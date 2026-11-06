@@ -1,0 +1,5 @@
+form: skill
+declared_by: ken
+reason: |
+  markdown skill 主体：SKILL.md（方法、规则、年度清单、流程）由 Agent 读后执行；
+  附 init.sh（拷模板到 user/）与 scripts/due.py（列到期检查），user/ 为运行时层不入库。

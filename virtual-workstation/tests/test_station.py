@@ -49,33 +49,33 @@ class Egress(unittest.TestCase):
 
 
 class Exit(unittest.TestCase):
-    RISK = {"trust": 76, "datacenter": True, "vpn": False, "proxy": False, "tor": False, "abuser": False, "country": "US"}
     CLEAN = {"bl.spamcop.net": "clean", "b.barracudacentral.org": "clean"}
 
-    def test_clean_exit(self):
-        items, country = station.check_exit("203.0.113.7", {"country": "US", "network": "AS1 X"}, self.RISK, self.CLEAN)
+    def test_us_exit_passes(self):
+        items, country = station.check_exit({"country": "US", "network": "AS1 X"}, self.CLEAN)
         self.assertEqual(set(states(items).values()), {"pass"})
         self.assertEqual(country, "US")
 
-    def test_disagreement_warns_but_keeps_ipinfo_country(self):
-        items, country = station.check_exit("203.0.113.7", {"country": "US"}, dict(self.RISK, country="SG"), self.CLEAN)
-        self.assertEqual(states(items)["出口位置"], "warn")
-        self.assertEqual(country, "US")
-
-    def test_low_trust_and_flags_warn(self):
-        items, _ = station.check_exit("203.0.113.7", {"country": "US"},
-                                      dict(self.RISK, trust=43, proxy=True, abuser=True), self.CLEAN)
-        got = states(items)
-        self.assertEqual((got["信任分"], got["VPN/代理标记"], got["滥用记录"]), ("warn", "warn", "warn"))
+    def test_non_us_location_fails(self):
+        items, country = station.check_exit({"country": "SG"}, self.CLEAN)
+        self.assertEqual(states(items)["出口位置"], "fail")
+        self.assertEqual(country, "SG")
 
     def test_blocklisted_fails(self):
-        items, _ = station.check_exit("203.0.113.7", {"country": "US"}, self.RISK, dict(self.CLEAN, **{"bl.spamcop.net": "listed"}))
+        items, _ = station.check_exit({"country": "US"}, dict(self.CLEAN, **{"bl.spamcop.net": "listed"}))
         self.assertEqual(states(items)["黑名单"], "fail")
 
-    def test_no_risk_answer_is_unknown(self):
-        items, country = station.check_exit("203.0.113.7", None, None, {"bl.spamcop.net": "unknown"})
+    def test_unread_is_unknown(self):
+        items, country = station.check_exit(None, {"bl.spamcop.net": "unknown"})
         self.assertEqual(set(states(items).values()), {"unknown"})
         self.assertIsNone(country)
+
+    def test_manual_check_names_the_page_for_this_ip(self):
+        self.assertIn("https://ip.net.coffee/ip/203.0.113.7", station.manual_check("203.0.113.7"))
+
+    def test_no_ip_net_coffee_api_call(self):
+        source = Path(station.__file__).read_text(encoding="utf-8")
+        self.assertNotIn("ip.net.coffee/api", source)
 
 
 class Client(unittest.TestCase):

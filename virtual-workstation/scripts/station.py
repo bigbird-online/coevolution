@@ -6,6 +6,8 @@
   station.py clean                                              每周跑一次：出口干不干净、有没有泄漏
 
 只读：不改 Tailscale、不改系统设置、不登录任何账号。只用 Python 标准库（3.8 以上）。
+公网 IP 读 ipify、icanhazip，定位读 IPinfo，都是公开给程序调用的接口。
+ip.net.coffee 没有公开的接口条款，不调用它；clean 最后打印它的网页地址，由本人手查。
 每项结果是 通过 / 需注意 / 不通过 / 没读到；没读到不算通过。
 退出码：0 全部通过；1 有不通过；2 没有不通过，但有需注意或没读到。
 """
@@ -31,7 +33,8 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_FILE = HERE.parent / "user" / "station.json"
 IPV4_SOURCES = ("https://api.ipify.org", "https://ipv4.icanhazip.com")
 IPV6_SOURCE = "https://api6.ipify.org"
-TRUST_OK = 50  # ip.net.coffee：50–79 良好，80 以上纯净
+EXIT_COUNTRY = "US"  # 出口必须定位在美国
+MANUAL_PAGE = "https://ip.net.coffee/ip/{ip}"  # 手查页：国家/地区、信任评分、黑名单
 BLOCKLISTS = ("bl.spamcop.net", "b.barracudacentral.org")
 STUN_SERVERS = (("stun.l.google.com", 19302), ("stun.cloudflare.com", 3478))
 # 出口所在国的常见时差（小时）。只看时差，分不出同时区的国家。
@@ -138,20 +141,6 @@ def ipinfo(ip: str) -> dict | None:
     except (OSError, ValueError):
         return None
     return {"country": d.get("country"), "network": d.get("org")} if d.get("country") else None
-
-
-def iprisk(ip: str) -> dict | None:
-    """ip.net.coffee 的判断：信任分 0–100 与机房、VPN、代理、Tor、滥用标记；按网段给出，最长缓存一年。"""
-    try:
-        r = http_json(f"https://ip.net.coffee/api/iprisk/{ip}", timeout=12)
-    except (OSError, ValueError):
-        return None
-    # 不认识的地址会回一个「住宅、100 分、没有网络归属」的答案，那不是判断。
-    if not isinstance(r, dict) or not isinstance(r.get("trust_score"), int) or not r.get("asn"):
-        return None
-    return {"trust": r["trust_score"], "datacenter": r.get("is_datacenter"), "vpn": r.get("is_vpn"),
-            "proxy": r.get("is_proxy"), "tor": r.get("is_tor"), "abuser": r.get("is_abuser"),
-            "country": (r.get("countryCode") or "").upper() or None}
 
 
 def lookup(name: str) -> str | None:
@@ -264,38 +253,16 @@ def check_egress(station: dict, status: dict | None, ipv4: list) -> list[dict]:
     return out
 
 
-def check_exit(ip: str, info: dict | None, risk: dict | None, lists: dict) -> tuple[list[dict], str | None]:
-    """出口 IP 在网站眼里的样子；同时返回出口所在国（以 IPinfo 为准，它没给才用 ip.net.coffee 的）。"""
+def check_exit(info: dict | None, lists: dict) -> tuple[list[dict], str | None]:
+    """出口 IP 在网站眼里的样子；同时返回 IPinfo 给的出口所在国。"""
     out = []
-    opinions = {k: v for k, v in (("ipinfo", (info or {}).get("country")),
-                                  ("ip.net.coffee", (risk or {}).get("country"))) if v}
-    where = set(opinions.values())
-    if len(where) > 1:
-        out.append(item("出口位置", WARN, "定位不一致：" + "、".join(f"{k} {v}" for k, v in opinions.items())))
-    elif len(opinions) < 2:
-        out.append(item("出口位置", UNKNOWN, "只有 " + ("、".join(opinions) or "0 个来源") + " 给出了定位"))
+    country = (info or {}).get("country")
+    if not country:
+        out.append(item("出口位置", UNKNOWN, "IPinfo 没有给出定位"))
+    elif country != EXIT_COUNTRY:
+        out.append(item("出口位置", FAIL, f"IPinfo 定位在 {country}，不是美国：这台不合格，换 IP 或退掉重买"))
     else:
-        out.append(item("出口位置", PASS, f"两个来源都定位在 {next(iter(where))}；网络归属 {(info or {}).get('network') or '?'}"))
-    if not risk:
-        out.append(item("信任分", UNKNOWN, "ip.net.coffee 没有返回"))
-        out.append(item("VPN/代理标记", UNKNOWN, "ip.net.coffee 没有返回"))
-        out.append(item("滥用记录", UNKNOWN, "ip.net.coffee 没有返回"))
-    else:
-        t = risk["trust"]
-        dc = "；机房 IP（云服务器都是，不等于 VPN）" if risk.get("datacenter") else ""
-        out.append(item("信任分", PASS if t >= TRUST_OK else WARN, f"{t}/100，{TRUST_OK} 以下有风险{dc}"))
-        flags = (("VPN", "vpn"), ("代理", "proxy"), ("Tor", "tor"))
-        marked = [n for n, k in flags if risk.get(k) is True]
-        unread = [n for n, k in flags if not isinstance(risk.get(k), bool)]
-        if marked:
-            out.append(item("VPN/代理标记", WARN, "被标为" + "、".join(marked)))
-        elif unread:
-            out.append(item("VPN/代理标记", UNKNOWN, "没有给出 " + "、".join(unread) + " 标记"))
-        else:
-            out.append(item("VPN/代理标记", PASS, "没有被标为 VPN、代理或 Tor"))
-        abuser = risk.get("abuser")
-        out.append(item("滥用记录", WARN if abuser is True else PASS if abuser is False else UNKNOWN,
-                        {True: "有滥用记录", False: "没有滥用记录"}.get(abuser, "没有给出滥用标记")))
+        out.append(item("出口位置", PASS, f"IPinfo 定位在 {country}；网络归属 {(info or {}).get('network') or '?'}"))
     listed = [k for k, v in lists.items() if v == "listed"]
     if listed:
         out.append(item("黑名单", FAIL, "上榜：" + "、".join(listed) + "；换一台云主机或换 IP"))
@@ -303,7 +270,14 @@ def check_exit(ip: str, info: dict | None, risk: dict | None, lists: dict) -> tu
         out.append(item("黑名单", UNKNOWN, "名单没有查全"))
     else:
         out.append(item("黑名单", PASS, f"{len(lists)} 个名单都没有"))
-    return out, opinions.get("ipinfo") or opinions.get("ip.net.coffee")
+    return out, country
+
+
+def manual_check(ip: str) -> str:
+    """脚本查不到的几项，由本人在网页上看。"""
+    return (f"还要手查：浏览器打开 {MANUAL_PAGE.format(ip=ip)} ，等实时检测加载完，"
+            f"看「国家/地区」是不是 United States (US)、「信任评分」是否不低于 50、黑名单有没有记录；"
+            f"任一项不合格，这台出口就不合格：先别登录，按 README 第 1 步换 IP。")
 
 
 def check_client(exit_ip: str, country: str | None, v6: str | None, v6_country: str | None, v6_path: str | None,
@@ -413,8 +387,7 @@ def cmd_clean(args) -> int:
         report("出口自查没通过，先修出口：", first)
         return 1
     ip = station["public_ipv4"]
-    info, risk = ipinfo(ip), iprisk(ip)
-    exit_items, country = check_exit(ip, info, risk, blocklists(ip))
+    exit_items, country = check_exit(ipinfo(ip), blocklists(ip))
     v6 = read_ip(IPV6_SOURCE)
     v6_info = ipinfo(v6) if v6 else None
     try:
@@ -426,9 +399,9 @@ def cmd_clean(args) -> int:
                                 (dns_info or {}).get("country"), zone_country(), utc_offset_hours(), language())
     code = report(f"出口干净度自查（{station['node']} / {ip}，{time.strftime('%Y-%m-%d %H:%M')}）",
                   first + exit_items + client_items)
-    print("结论：" + {0: "全部通过。", 1: "有不通过的项，先处理再登录。",
+    print("结论：" + {0: "自动检查全部通过。", 1: "有不通过的项，先处理再登录。",
                       2: "没有不通过；需注意的项看说明自行决定，没读到的稍后重跑。"}[code])
-    print("定位数据来自 IPinfo（ipinfo.io）与 ip.net.coffee。")
+    print(manual_check(ip))
     return code
 
 

@@ -1,0 +1,5 @@
+form: skill
+declared_by: ken
+reason: |
+  markdown skill 主体：SKILL.md（规矩、安装步骤、日常自查）由 Agent 读后执行；
+  附 scripts/setup-exit-node.sh（云主机开成出口）与 scripts/station.py（电脑上登记与自查），user/ 为运行时层不入库。

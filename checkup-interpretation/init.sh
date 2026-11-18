@@ -33,6 +33,27 @@ for t in assets/*.template.md; do
   fi
 done
 
+# 与 checkup-planning 共用档案时，它的模板缺解读要用的几栏，补在档案末尾（只补一次）。
+if [ -e user/profile.md ] && ! grep -q '^- 身高' user/profile.md; then
+  cat >> user/profile.md <<'ADD'
+
+## 解读要用的补充（checkup-interpretation）
+
+- 身高：（算腰围身高比用）
+- 城乡、南方或北方：（算心血管病十年风险用）
+- 血压、血糖、血脂：（是否诊断过，是否在用药）
+- 内镜：（肠镜、胃镜做过没有、哪年、结论）
+- 家族史：高血压、早发心脑血管病、糖尿病、癌症（哪一种）、痴呆
+
+### 症状
+
+> 最近有没有：运动时胸闷胸痛；单侧无力或麻木、说话不清；新出现的记忆变差、找词困难、在熟悉的地方迷路。没有就写「无」。
+
+- 
+ADD
+  echo "[补充] user/profile.md 末尾补了解读要用的几栏"
+fi
+
 echo
 echo "下一步：把历次体检报告的 PDF 或照片放进 user/checkups/，手表、家测血压的导出放进 user/wearables/；"
 echo "然后对 Agent 说「帮我读体检报告」。"

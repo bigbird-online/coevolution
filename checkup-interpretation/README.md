@@ -37,7 +37,7 @@ cp -R coevolution/checkup-planning coevolution/checkup-interpretation ~/.claude/
 cd ~/.claude/skills/checkup-interpretation && ./init.sh
 ```
 
-`init.sh` 准备 `user/`：同级有 `checkup-planning/` 的，把 `user/` 链到它的 `user/`，两个 skill 共用一份健康档案和抄好的报告；没有的，自建 `user/`。它再放进两份模板：`user/profile.md`（健康档案，已有的不覆盖）和 `user/baseline.md`（解读结论）。之后在 Claude Code 里说「帮我读体检报告」，它会按 `SKILL.md` 的描述自动用上这个 skill。只想读报告、不要上一期的，`cp` 那行去掉 `coevolution/checkup-planning` 即可。
+`init.sh` 准备 `user/`：同级有 `checkup-planning/` 的，把 `user/` 链到它的 `user/`，两个 skill 共用一份健康档案和抄好的报告；没有的，自建 `user/`。它再放进两份模板：`user/profile.md`（健康档案；已有的不覆盖，只在末尾补上解读要用的几栏，如身高、症状）和 `user/baseline.md`（解读结论）。之后在 Claude Code 里说「帮我读体检报告」，它会按 `SKILL.md` 的描述自动用上这个 skill。只想读报告、不要上一期的，`cp` 那行去掉 `coevolution/checkup-planning` 即可。
 
 ### 其他能读文件的 Agent（Codex 等）
 
@@ -59,8 +59,8 @@ cd coevolution/checkup-interpretation && ./init.sh
 
 ## 开始用
 
-1. **交数据**：把历年体检报告的 PDF 或照片放进 `user/checkups/`，越全越好；手表、体脂秤、家测血压、连续血糖的导出放进 `user/wearables/`。打开 `user/profile.md`，填性别、年龄段、身高、个人史、家族史和最近的症状；不必写姓名、证件号、体检机构。
-2. **抄成表**：对 Agent 说「帮我读体检报告」。它先照原件逐页抄成表，同一指标排成历年一行，不用文字识别的结果；标了异常、可能改变等级的，回原件对到页码。
+1. **交数据**：把历年体检报告的 PDF 或照片放进 `user/checkups/`（照上面 Claude Code 装法装的，完整路径是 `~/.claude/skills/checkup-interpretation/user/checkups/`），越全越好；手表、体脂秤、家测血压、连续血糖的导出放进 `user/wearables/`。打开 `user/profile.md`，填性别、年龄段、身高、个人史、家族史和最近的症状；不必写姓名、证件号、体检机构。
+2. **抄成表**：对 Agent 说「帮我读体检报告」。它第一次往 `user/` 里写抄录时会请你授权，选允许。它先照原件逐页抄成表，同一指标排成历年一行，不用文字识别的结果；标了异常、可能改变等级的，回原件对到页码。
 3. **一个骑士一个骑士读**：它先查红旗（危急值、报告写「尽快就诊」、危险症状），有就先告诉你去就医。然后从代谢读起，每个骑士讲上游、器官、缓冲、下游各落在哪，给一个建议等级。你确认了，再读下一个；你觉得不对，可以调，以你的为准。
 4. **拿看板和问题单**：五个方面读完，它交回 `user/interpretation/` 里的完整解读和一张看板（HTML，用浏览器打开）：首页是全貌、最要紧的三件事和五张骑士卡，往下是各骑士的依据图。问题单按科室分组，打印带去门诊。
 5. **下次报告到手**：再说一遍「帮我读体检报告」，它把新报告接进历年序列重读，等级变了会告诉你为什么。

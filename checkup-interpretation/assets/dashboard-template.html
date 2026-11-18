@@ -1,0 +1,281 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><title>{{称呼}} · 健康看板 · {{看板日期}}</title><style>
+body{margin:0;background:#efeee9;font-family:-apple-system,"PingFang SC",sans-serif;color:#1d1d1b}
+.wrap{width:1000px;margin:0 auto;background:#fcfcfa}
+.sec,.ov{padding:34px 36px 30px;border-bottom:8px solid #efeee9}
+.foot a{color:#2a78d6;text-decoration:none}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:#5f5e5a}
+.ov h2{font-size:13px;letter-spacing:.06em;color:#5f5e5a;font-weight:600;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e4e3de}
+.endfoot{font-size:11px;color:#9a9993;padding:18px 36px 26px;line-height:1.7}
+
+.ov h1{font-size:30px;margin:4px 0 6px}.ov .lead{font-size:15px;color:#5f5e5a;line-height:1.6;margin-bottom:16px}
+.top3{background:#1d1d1b;color:#fff;border-radius:8px;padding:14px 18px;margin-bottom:22px}
+.top3 h3{margin:0 0 8px;font-size:14px;letter-spacing:.06em;color:#cfcfca;font-weight:600}
+.top3 ol{margin:0;padding-left:20px}.top3 li{font-size:14.5px;line-height:1.6;margin:4px 0}.top3 li span{color:#b9b8b2;font-size:12.5px}
+.hcs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+.hc{display:block;text-decoration:none;color:inherit;border:1px solid #e4e3de;border-radius:8px;padding:12px;background:#fff}
+.hc:hover{border-color:#2a78d6}.hn{font-size:13px;font-weight:700;margin-bottom:6px}.hs{font-size:11.5px;color:#5f5e5a}
+.hst{font-size:11px;color:#9a9993;margin:6px 0}.hw{font-size:12.5px;line-height:1.5;min-height:94px}.hx{font-size:12px;color:#2a78d6;margin-top:8px;line-height:1.4}
+.pill{display:inline-block;color:#fff;border-radius:12px;padding:2px 10px;font-size:12px;font-weight:700}.pbig{font-size:15px;padding:3px 12px}
+.ph{display:grid;grid-template-columns:96px 1fr 22px 1fr 22px 1fr;font-size:12px;color:#5f5e5a;margin-bottom:4px}
+.pl{display:grid;grid-template-columns:96px 1fr 22px 1fr 22px 1fr;align-items:center;padding:8px 0;border-bottom:1px solid #f0efea}
+.pt{font-size:13.5px;font-weight:700}.pc{display:flex;flex-wrap:wrap;gap:5px}.pa{color:#9a9993;text-align:center}
+.pn{font-size:12px;background:#fff;border:1px solid #e4e3de;border-radius:4px;padding:3px 7px}
+.side{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}.side .card{border:1px solid #e4e3de;border-radius:8px;padding:12px 16px;background:#fff}
+.side h3{font-size:14px;margin:0 0 8px}.side li{font-size:12.5px;line-height:1.6}
+
+#metab .eyebrow{font-size:12px;letter-spacing:.08em;color:#5f5e5a}
+#metab h1{font-size:30px;margin:4px 0 14px;font-weight:700}
+#metab .verdict{font-size:19px;line-height:1.6;font-weight:600;margin-bottom:6px}
+#metab .next{display:inline-block;margin:8px 0 22px;padding:9px 14px;border-radius:6px;background:#1d1d1b;color:#fff;font-size:14.5px}
+#metab .flow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+#metab .card{border:1px solid #e4e3de;border-radius:8px;padding:16px 18px;background:#fff}
+#metab .card h3{margin:0 0 4px;font-size:16px}
+#metab .card .q{font-size:12.5px;color:#5f5e5a;margin-bottom:12px}
+#metab .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+#metab .chip{font-size:12.5px;border:1px solid;border-radius:14px;padding:3px 10px;background:#fff}
+#metab .res{font-size:14px;line-height:1.6;border-top:1px dashed #e4e3de;padding-top:10px}
+#metab .res b{font-weight:700}
+#metab h2{font-size:13px;letter-spacing:.06em;color:#5f5e5a;font-weight:600;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e4e3de}
+#metab .legend{font-size:12px;color:#5f5e5a;margin:0 0 6px;display:flex;gap:16px;align-items:center}
+#metab .row{display:grid;grid-template-columns:150px 110px 410px 130px 1fr;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #f0efea}
+#metab .nm{font-size:14.5px;font-weight:600}
+#metab .sub{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-top:2px}
+#metab .val{font-size:24px;font-weight:700;text-align:right;padding-right:8px}
+#metab .u{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-left:3px}
+#metab .row:not(.big) .nm{font-size:13px}
+#metab .row:not(.big) .val{font-size:16px}
+#metab .nt{font-size:12px;color:#5f5e5a;line-height:1.5}
+#metab .nt b{color:#1d1d1b}
+#metab .sc{font-size:10px;fill:#5f5e5a}
+#metab .sc2{font-size:10px;color:#9a9993;margin-top:2px}
+#metab .lv{display:flex;gap:2px;padding-left:2px}
+#metab .lc{width:48px;text-align:center}
+#metab .ld{width:12px;height:12px;border-radius:50%;display:inline-block}
+#metab .sc3{font-size:10px;color:#5f5e5a}
+#metab .tx{font-size:12.5px;color:#5f5e5a}
+#metab .secondary{margin-top:26px}
+#metab .foot{font-size:11px;color:#9a9993;margin-top:22px;line-height:1.7}
+#cardio .eyebrow{font-size:12px;letter-spacing:.08em;color:#5f5e5a}
+#cardio h1{font-size:30px;margin:4px 0 14px;font-weight:700}
+#cardio .verdict{font-size:19px;line-height:1.6;font-weight:600;margin-bottom:6px}
+#cardio .next{display:inline-block;margin:8px 0 22px;padding:9px 14px;border-radius:6px;background:#1d1d1b;color:#fff;font-size:14.5px}
+#cardio .flow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+#cardio .card{border:1px solid #e4e3de;border-radius:8px;padding:16px 18px;background:#fff}
+#cardio .card h3{margin:0 0 4px;font-size:16px}
+#cardio .card .q{font-size:12.5px;color:#5f5e5a;margin-bottom:12px}
+#cardio .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+#cardio .chip{font-size:12.5px;border:1px solid;border-radius:14px;padding:3px 10px;background:#fff}
+#cardio .res{font-size:14px;line-height:1.6;border-top:1px dashed #e4e3de;padding-top:10px}
+#cardio .res b{font-weight:700}
+#cardio h2{font-size:13px;letter-spacing:.06em;color:#5f5e5a;font-weight:600;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e4e3de}
+#cardio .legend{font-size:12px;color:#5f5e5a;margin:0 0 6px;display:flex;gap:16px;align-items:center}
+#cardio .row{display:grid;grid-template-columns:150px 110px 410px 130px 1fr;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #f0efea}
+#cardio .nm{font-size:14.5px;font-weight:600}
+#cardio .sub{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-top:2px}
+#cardio .val{font-size:24px;font-weight:700;text-align:right;padding-right:8px}
+#cardio .u{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-left:3px}
+#cardio .row:not(.big) .nm{font-size:13px}
+#cardio .row:not(.big) .val{font-size:16px}
+#cardio .nt{font-size:12px;color:#5f5e5a;line-height:1.5}
+#cardio .nt b{color:#1d1d1b}
+#cardio .sc{font-size:10px;fill:#5f5e5a}
+#cardio .sc2{font-size:10px;color:#9a9993;margin-top:2px}
+#cardio .lv{display:flex;gap:2px;padding-left:2px}
+#cardio .lc{width:48px;text-align:center}
+#cardio .ld{width:12px;height:12px;border-radius:50%;display:inline-block}
+#cardio .sc3{font-size:10px;color:#5f5e5a}
+#cardio .tx{font-size:12.5px;color:#5f5e5a}
+#cardio .secondary{margin-top:26px}
+#cardio .foot{font-size:11px;color:#9a9993;margin-top:22px;line-height:1.7}
+#cancer .eyebrow{font-size:12px;letter-spacing:.08em;color:#5f5e5a}
+#cancer h1{font-size:30px;margin:4px 0 14px;font-weight:700}
+#cancer .next{display:inline-block;margin:8px 0 22px;padding:9px 14px;border-radius:6px;background:#1d1d1b;color:#fff;font-size:14.5px}
+#cancer .flow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+#cancer .card{border:1px solid #e4e3de;border-radius:8px;padding:16px 18px;background:#fff}
+#cancer .card h3{margin:0 0 4px;font-size:16px}
+#cancer .card .q{font-size:12.5px;color:#5f5e5a;margin-bottom:12px;line-height:1.5}
+#cancer .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+#cancer .chip{font-size:12.5px;border:1px solid;border-radius:14px;padding:3px 10px;background:#fff}
+#cancer .res{font-size:14px;line-height:1.6;border-top:1px dashed #e4e3de;padding-top:10px}
+#cancer h2{font-size:13px;letter-spacing:.06em;color:#5f5e5a;font-weight:600;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e4e3de}
+#cancer .legend{font-size:12px;color:#5f5e5a;margin:0 0 6px;display:flex;gap:16px;align-items:center}
+#cancer .cr{display:grid;grid-template-columns:110px repeat(9,58px) 1fr;align-items:start;gap:4px;padding:9px 0;border-bottom:1px solid #f0efea}
+#cancer .cr.hd{padding:2px 0;border-bottom:1px solid #e4e3de}
+#cancer .ch{font-size:10.5px;color:#9a9993;text-align:center}
+#cancer .cc{text-align:center}
+#cancer .cd{display:inline-block;width:14px;height:14px;border-radius:50%;box-sizing:border-box}
+#cancer .ct{font-size:9.5px;color:#5f5e5a;line-height:1.3;margin-top:2px}
+#cancer .cs{font-size:12.5px;line-height:1.5;padding-left:8px;color:#1d1d1b}
+#cancer .nm{font-size:14.5px;font-weight:600}
+#cancer .sub{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-top:2px}
+#cancer .big{display:grid;grid-template-columns:150px 110px 410px 1fr;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #f0efea}
+#cancer .row{display:grid;grid-template-columns:150px 90px 130px 1fr;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f0efea}
+#cancer .row .nm{font-size:13px}
+#cancer .val{font-size:22px;font-weight:700;text-align:right;padding-right:8px}
+#cancer .row .val{font-size:16px}
+#cancer .u{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-left:3px}
+#cancer .nt{font-size:12px;color:#5f5e5a;line-height:1.5}
+#cancer .nt b{color:#1d1d1b}
+#cancer .sc{font-size:10px;fill:#5f5e5a}
+#cancer .secondary{margin-top:26px}
+#cancer .foot{font-size:11px;color:#9a9993;margin-top:22px;line-height:1.7}
+#neuro .eyebrow{font-size:12px;letter-spacing:.08em;color:#5f5e5a}
+#neuro h1{font-size:30px;margin:4px 0 14px;font-weight:700}
+#neuro .next{display:inline-block;margin:8px 0 22px;padding:9px 14px;border-radius:6px;background:#1d1d1b;color:#fff;font-size:14.5px}
+#neuro .flow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+#neuro .card{border:1px solid #e4e3de;border-radius:8px;padding:16px 18px;background:#fff}
+#neuro .card h3{margin:0 0 4px;font-size:16px}
+#neuro .card .q{font-size:12.5px;color:#5f5e5a;margin-bottom:12px;line-height:1.5}
+#neuro .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+#neuro .chip{font-size:12.5px;border:1px solid;border-radius:14px;padding:3px 10px;background:#fff}
+#neuro .res{font-size:14px;line-height:1.6;border-top:1px dashed #e4e3de;padding-top:10px}
+#neuro h2{font-size:13px;letter-spacing:.06em;color:#5f5e5a;font-weight:600;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e4e3de}
+#neuro .row{display:grid;grid-template-columns:150px 110px 410px 170px 1fr;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #f0efea}
+#neuro .nm{font-size:14.5px;font-weight:600}
+#neuro .sub{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-top:2px}
+#neuro .val{font-size:24px;font-weight:700;text-align:right;padding-right:8px}
+#neuro .u{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-left:3px}
+#neuro .nt{font-size:12px;color:#5f5e5a;line-height:1.5}
+#neuro .nt b{color:#1d1d1b}
+#neuro .sc{font-size:10px;fill:#5f5e5a}
+#neuro .tx{font-size:12.5px;color:#5f5e5a;line-height:1.5}
+#neuro .pill{display:inline-block;color:#fff;border-radius:12px;padding:2px 12px;font-size:13px;font-weight:700}
+#neuro .secondary{margin-top:26px}
+#neuro .foot{font-size:11px;color:#9a9993;margin-top:22px;line-height:1.7}
+#fit .eyebrow{font-size:12px;letter-spacing:.08em;color:#5f5e5a}
+#fit h1{font-size:30px;margin:4px 0 14px;font-weight:700}
+#fit .next{display:inline-block;margin:8px 0 22px;padding:9px 14px;border-radius:6px;background:#1d1d1b;color:#fff;font-size:14.5px}
+#fit .flow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+#fit .card{border:1px solid #e4e3de;border-radius:8px;padding:16px 18px;background:#fff}
+#fit .card h3{margin:0 0 4px;font-size:16px}
+#fit .card .q{font-size:12.5px;color:#5f5e5a;margin-bottom:12px;line-height:1.5}
+#fit .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+#fit .chip{font-size:12.5px;border:1px solid;border-radius:14px;padding:3px 10px;background:#fff}
+#fit .res{font-size:14px;line-height:1.6;border-top:1px dashed #e4e3de;padding-top:10px}
+#fit h2{font-size:13px;letter-spacing:.06em;color:#5f5e5a;font-weight:600;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid #e4e3de}
+#fit .row{display:grid;grid-template-columns:150px 110px 410px 170px 1fr;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #f0efea}
+#fit .nm{font-size:14.5px;font-weight:600}
+#fit .sub{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-top:2px}
+#fit .val{font-size:24px;font-weight:700;text-align:right;padding-right:8px}
+#fit .u{font-size:11.5px;color:#5f5e5a;font-weight:400;margin-left:3px}
+#fit .nt{font-size:12px;color:#5f5e5a;line-height:1.5}
+#fit .nt b{color:#1d1d1b}
+#fit .sc{font-size:10px;fill:#5f5e5a}
+#fit .tx{font-size:12.5px;color:#5f5e5a;line-height:1.5}
+#fit .pill{display:inline-block;color:#fff;border-radius:12px;padding:2px 12px;font-size:13px;font-weight:700}
+#fit .secondary{margin-top:26px}
+#fit .foot{font-size:11px;color:#9a9993;margin-top:22px;line-height:1.7}
+</style>
+<!--
+  健康看板模板（checkup-interpretation skill）。画法规则见 references/dashboard.md，本文件是它的固定形式。
+  用法：复制到 user/interpretation/<日期>-health-dashboard.html，替换全部 {{…}}，按注释复制组件，删掉所有注释。
+  CSS 原样保留，不改结构、配色与组件。每节 CSS 以节的 id 为前缀（#metab #cardio #cancer #neuro #fit）。
+  颜色：🟢/低 #0ca30c · 中低 #d9b400 · 🟡/中/越线 #e39400 · 🔴/高/缺口 #d03b3b · 待评估/未记录 #9a9993 · 本次 #2a78d6 · 良性所见 #7fb77f
+-->
+<div class="wrap">
+<!-- ═══ 首页纵览（dashboard.md「首页纵览」）═══ -->
+<section class="ov" id="top">
+<!-- 1 眉标 -->
+<div class="eyebrow">{{称呼}} · {{看板日期}} · 数据截至 {{最近体检日期}} 体检与 {{最近家测或手表日期}} · {{确认状态，如「代谢已确认，其余待你确认」}}</div>
+<!-- 2 标题：一句话说全貌，点出最要紧的骑士 -->
+<h1>{{一句话全貌}}</h1>
+<div class="lead">{{两三句展开：几个方面在什么等级、各自主要原因}}</div>
+<!-- 3 现在最要紧的三件事：做什么、什么时候 + <span> 为什么（所属骑士） -->
+<div class="top3"><h3>现在最要紧的三件事</h3><ol>
+<li>{{做什么，什么时候}} <span>· {{骑士}}：{{为什么}}</span></li>
+<li>{{做什么，什么时候}} <span>· {{骑士}}：{{为什么}}</span></li>
+<li>{{做什么，什么时候}} <span>· {{骑士}}：{{为什么}}</span></li>
+</ol></div>
+<!-- 4 骑士卡：固定五张，顺序与锚点不变。等级胶囊颜色：高 #d03b3b、中 #e39400、中低 #d9b400、低 #0ca30c、待评估 #9a9993 -->
+<h2>五个方面</h2>
+<div class="hcs"><a class="hc" href="#metab"><div class="hn">1 代谢</div><div><span class="pill pbig" style="background:#0ca30c">低</span> <span class="hs">证据{{强/中/弱}}</span></div><div class="hst">{{本人确认 日期 或 建议，待你确认}}</div><div class="hw">{{一句话依据}}</div><div class="hx">下一步：{{一件事}}</div></a><a class="hc" href="#cardio"><div class="hn">2 心脑血管</div><div><span class="pill pbig" style="background:#d9b400">中低</span> <span class="hs">证据{{强/中/弱}}</span></div><div class="hst">{{确认状态}}</div><div class="hw">{{一句话依据}}</div><div class="hx">下一步：{{一件事}}</div></a><a class="hc" href="#cancer"><div class="hn">3 癌症</div><div><span class="pill pbig" style="background:#e39400">中</span> <span class="hs">证据{{强/中/弱}}</span></div><div class="hst">{{确认状态}}</div><div class="hw">{{一句话依据}}</div><div class="hx">下一步：{{一件事}}</div></a><a class="hc" href="#neuro"><div class="hn">4 神经退行性</div><div><span class="pill pbig" style="background:#d03b3b">高</span> <span class="hs">证据{{强/中/弱}}</span></div><div class="hst">{{确认状态}}</div><div class="hw">{{一句话依据}}</div><div class="hx">下一步：{{一件事}}</div></a><a class="hc" href="#fit"><div class="hn">5 体能与支撑</div><div><span class="pill pbig" style="background:#9a9993">待评估</span> <span class="hs">证据弱</span></div><div class="hst">{{确认状态}}</div><div class="hw">{{缺什么}}</div><div class="hx">下一步：{{怎么补}}</div></a></div>
+<!-- 5 脉络：每个骑士一行 .pl，三栏 上游 → 器官 → 下游；每个 .pn 左边框按该项分档着色 -->
+<h2>脉络：上游 → 器官 → 下游（先管上游）</h2>
+<div class="ph"><div></div><div>上游：推动的因素</div><div></div><div>器官：已经出现的改变</div><div></div><div>下游：结果与事件</div></div>
+<div class="pl"><div class="pt">{{骑士}}</div><div class="pc"><div class="pn" style="border-left:3px solid #0ca30c">{{上游指标 本人值}}</div><div class="pn" style="border-left:3px solid #e39400">{{上游指标 本人值}}</div></div><div class="pa">→</div><div class="pc"><div class="pn" style="border-left:3px solid #0ca30c">{{器官所见}}</div></div><div class="pa">→</div><div class="pc"><div class="pn" style="border-left:3px solid #9a9993">{{下游，没有写 —}}</div></div></div>
+<!-- 6 单列项（不定级）与数据缺口 -->
+<div class="side"><div class="card"><h3>单列项（不定级，各自看专科）</h3><ul style="margin:0;padding-left:18px"><li><b>{{单列项}}</b>：{{所见}}。<i>{{下一步}}</i></li></ul></div>
+<div class="card"><h3>还缺的数据</h3><ul style="margin:0;padding-left:18px"><li>{{缺什么（所属骑士）}}</li></ul></div></div>
+</section>
+
+<!-- ═══ 骑士解析（dashboard.md「骑士解析」）═══
+  五节依次为 metab、cardio、cancer、neuro、fit。下面以 metab 为例，cardio 照搬，把 id 和 CSS 前缀对上。 -->
+<section id="metab" class="sec">
+<!-- 1 眉标 · 2 标题 · 3 下一步（一到三件，用 · 分隔） -->
+<div class="eyebrow">{{骑士}} · {{本人确认 日期 或 建议，待你确认}}</div>
+<h1>{{骑士}}：{{等级}}。{{最主要的原因}}</h1>
+<div class="next">下一步：{{事一}} · {{事二}}</div>
+<!-- 4 两张流程卡。胶囊：✓ 正常 #0ca30c；! 越线 #e39400；? 缺口 #d03b3b；– 未记录或不适用 #9a9993。胶囊写「指标 本人值 比较符 线」。
+     代理指标对本人不灵（规则：SKILL.md「定级」）时用 – 灰胶囊，写它没反映出什么，不打 ✓。 -->
+<div class="flow">
+ <div class="card"><h3>{{问题，如「内脏脂肪」}}</h3><div class="q">直接测：{{直接测量}}。{{什么时候才做}}</div>
+  <div class="chips"><span class="chip" style="border-color:#0ca30c"><b style="color:#0ca30c">✓</b> {{指标 值 &lt; 线}}</span><span class="chip" style="border-color:#e39400"><b style="color:#e39400">!</b> {{指标 值 ≥ 线}}</span></div>
+  <div class="res">加查条件：{{条件，任一}}<br><b>结果：{{要不要加查，一句话}}</b></div></div>
+ <div class="card"><h3>{{问题}}</h3><div class="q">直接测：{{直接测量}}。{{什么时候才做}}</div>
+  <div class="chips"><span class="chip" style="border-color:#d03b3b"><b style="color:#d03b3b">?</b> {{缺的指标}}</span><span class="chip" style="border-color:#9a9993"><b style="color:#9a9993">–</b> {{没记录的指标}}</span></div>
+  <div class="res">加查条件：{{条件}}<br><b>结果：{{一句话}}</b></div></div>
+</div>
+<!-- 5 主要依据：图例放标题下；按脉络层与优先级排行。家测均值用蓝空心菱形，只在用到时把图例项留下。 -->
+<h2>主要依据：{{代理指标 / 原料与压力 …}}</h2>
+<div class="legend"><span><svg width="22" height="12"><rect x="0" y="2" width="22" height="8" fill="#0ca30c" opacity=".18"/><line x1="21" x2="21" y1="0" y2="12" stroke="#0ca30c" stroke-width="2"/></svg> Medicine 3.0 最佳区</span><span><svg width="10" height="12"><line x1="5" x2="5" y1="0" y2="12" stroke="#9a9993" stroke-width="1.5" stroke-dasharray="3 2"/></svg> Medicine 2.0 线（化验单参考上限或诊断阈值）</span><span><svg width="12" height="10"><path d="M1,1 L11,1 L6,8 Z" fill="#e39400"/></svg> 加查线（建议）</span><span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#2a78d6"/></svg> 本次</span><span><svg width="12" height="12"><circle cx="6" cy="6" r="4" fill="#fff" stroke="#9a9993" stroke-width="1.5"/></svg> 历年</span><span><svg width="12" height="12"><rect x="2.5" y="2.5" width="7" height="7" transform="rotate(45 6 6)" fill="#fff" stroke="#2a78d6" stroke-width="1.5"/></svg> 家测均值</span><span>右侧小线：时间走势</span></div>
+<!-- 主要依据一行（.row big）：名称+白话副标题 | 本次值+单位 | 子弹图 | 走势小线 | 注释。
+  子弹图坐标：x = 8 + (值 − 轴下限) ÷ (轴上限 − 轴下限) × 384，用不取整的换算值定位（如 100 mg/dL ÷ 18.02 = 5.54939 mmol/L）。
+  示例轴 0–10：Medicine 3.0 线 5（x=200）、加查线 6.5（x=257.6）、Medicine 2.0 线 8（x=315.2）。
+  线名标在线段上方，一律「线名 数值」；同值的线用顿号合并，如「Medicine 3.0 线、加查线 1.50」；靠得近的错开两行（y=11 与 y=23）。轴两端刻度标在下方。
+  点：历年灰空心圆，<title> 写「年-月：值」；低于检出限的画在上限，用虚线圈，<title> 写「&lt;上限（低于检出限）」；家测均值蓝空心菱形；本次蓝实心圆放最后。没有 Medicine 2.0 线的指标不画，在小注说明。 -->
+<div class="row big"><div class="nm">{{指标}}<div class="sub">{{白话副标题 · 所属层}}</div></div><div class="val">{{本次值}}<span class="u">{{单位}}</span></div><div class="bl"><svg width="400" height="68" xmlns="http://www.w3.org/2000/svg"><rect x="8.0" y="35" width="192.0" height="14" fill="#0ca30c" opacity=".14" rx="2"/><line x1="8" x2="392" y1="42" y2="42" stroke="#e4e3de" stroke-width="2"/><line x1="200.0" x2="200.0" y1="33" y2="51" stroke="#0ca30c" stroke-width="2"/><line x1="315.2" x2="315.2" y1="33" y2="51" stroke="#9a9993" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M252.6,27 L262.6,27 L257.6,33 Z" fill="#e39400"/><circle cx="161.6" cy="42" r="4" fill="#fff" stroke="#9a9993" stroke-width="1.5"><title>{{年-月}}：{{值}}</title></circle><circle cx="84.8" cy="42" r="4" fill="#fff" stroke="#9a9993" stroke-width="1.5" stroke-dasharray="2 1.5"><title>{{年-月}}：&lt;{{上限}}（低于检出限，画在上限）</title></circle><rect x="226.6" y="37" width="7" height="7" transform="rotate(45 230.1 40.5)" fill="#fff" stroke="#2a78d6" stroke-width="1.5"><title>家测均值 {{起止日期，次数}}：{{值}}</title></rect><circle cx="238.4" cy="42" r="6.5" fill="#2a78d6" stroke="#fff" stroke-width="2"><title>{{年-月}}：{{本次值}}</title></circle><text x="8.0" y="65" class="sc" text-anchor="start" fill="#9a9993">{{轴下限}}</text><text x="392.0" y="65" class="sc" text-anchor="end" fill="#9a9993">{{轴上限}}</text><text x="200.0" y="23" class="sc" text-anchor="middle" fill="#0ca30c">Medicine 3.0 线 {{值}}</text><text x="257.6" y="11" class="sc" text-anchor="middle" fill="#e39400">加查线 {{值}}</text><text x="315.2" y="23" class="sc" text-anchor="middle" fill="#9a9993">Medicine 2.0 线 {{值}}</text></svg></div><div class="sp"><!-- 走势小线：x 从 4 到 116 等分，y 在 5（最高）到 29（最低）之间按值线性换算。低于检出限的点：前后用虚线段连、画虚线小圈，实线在它前面断开。 --><svg width="120" height="34"><polyline fill="none" stroke="#9a9993" stroke-width="1.5" points="4.0,20.0 32.0,14.0 60.0,17.0"/><polyline fill="none" stroke="#9a9993" stroke-width="1.5" stroke-dasharray="2 2" points="60.0,17.0 88.0,27.0 116.0,11.0"/><circle cx="88.0" cy="27.0" r="2.5" fill="#fff" stroke="#9a9993" stroke-width="1.2" stroke-dasharray="1.5 1"><title>{{年-月}}：&lt;{{上限}}（上限）</title></circle><circle cx="116.0" cy="11.0" r="3.5" fill="#2a78d6"/></svg></div><div class="nt">{{历年范围、走向；<b>要点</b>加粗；口径（平均径、最大径、上限）写明}}</div></div>
+<!-- 定性结果按年排的一行（如肝脏超声）：.lv 里每次一个 .lc，圆点按结果着色 -->
+<div class="row big"><div class="nm">{{检查}}<div class="sub">{{所属层}}</div></div><div class="val">{{本次结果}}<span class="u"></span></div><div class="bl"><div class="lv"><div class="lc"><span class="ld" style="background:#d03b3b" title="{{年-月}}：{{结果}}"></span><div class="sc2">{{年-月}}</div><div class="sc3">{{结果}}</div></div><div class="lc"><span class="ld" style="background:#0ca30c" title="{{年-月}}：{{结果}}"></span><div class="sc2">{{年-月}}</div><div class="sc3">{{结果}}</div></div></div></div><div class="sp"></div><div class="nt">{{一句注释}}</div></div>
+<!-- 6 参考：缓冲、旁证、同一条证据的其他指标，小一号行（.row，SVG 高 34，线在 y=15）；没有分档的用 .tx 写一句 -->
+<div class="secondary"><h2>参考：{{缓冲与旁证}}（不单独定级）</h2><div class="row"><div class="nm">{{指标}}<div class="sub">{{缓冲 / 旁证 · 来源}}</div></div><div class="val">{{值}}<span class="u">{{单位}}</span></div><div class="bl"><div class="tx">{{一句话：范围与走向，写明统计窗口}}</div></div><div class="sp"></div><div class="nt"></div></div></div>
+<!-- 7 小注：回链、数据来源与时间范围、各线出处（本 skill 取值照写「本 skill 取值」）、加查线是本 skill 的建议、本节等级与确认状态 -->
+<div class="foot"><a href="#top">回到纵览 ↑</a> · 数据：{{来源与时间范围}}。Medicine 3.0 线取 {{出处}}；Medicine 2.0 线取 {{出处}}；加查线是本 skill 的建议，待你确认。{{骑士}}等级：{{等级}}，证据强度{{强/中/弱}}（{{确认状态}}）。</div>
+</section>
+
+<!-- ═══ 癌症（dashboard.md「癌症」）：流程卡改为「风险因素」「筛查：直接看」；主要依据为所见大小行 + 筛查日历；肿瘤标志物放参考区，只画报告参考上限 ═══ -->
+<section id="cancer" class="sec">
+<div class="eyebrow">癌症 · {{确认状态}}</div>
+<h1>癌症：{{等级}}。{{最主要的原因}}</h1>
+<div class="next">下一步：{{事一}} · {{事二}}</div>
+<div class="flow">
+ <div class="card"><h3>风险因素</h3><div class="q">{{这一骑士看哪些成因}}</div><div class="chips"><span class="chip" style="border-color:#0ca30c"><b style="color:#0ca30c">✓</b> {{因素}}</span></div><div class="res"><b>{{一句结论}}</b></div></div>
+ <div class="card"><h3>筛查：直接看</h3><div class="q">{{到年龄该做的筛查}}</div><div class="chips"><span class="chip" style="border-color:#d03b3b"><b style="color:#d03b3b">?</b> {{缺口}}</span></div><div class="res"><b>{{一句结论}}</b></div></div>
+</div>
+<h2>主要依据：要随访的所见</h2>
+<!-- 所见大小行（.big）：每个要随访的所见一行。按 indicators.md「所见怎么判断」取平均径或最大径；线为随访分档（6 mm、8 mm 等），轴算法同上。注释写每次的口径、增长与否、恶性概率（有的）与所落的档，不照抄报告措辞。 -->
+<div class="big"><div class="nm">{{部位与所见}}<div class="sub">{{几次影像 · 口径}}</div></div><div class="val">{{本次大小}}<span class="u">mm</span></div><div><svg width="400" height="56" xmlns="http://www.w3.org/2000/svg"><rect x="8.0" y="23" width="164.6" height="14" fill="#0ca30c" opacity=".14" rx="2"/><line x1="8" x2="392" y1="30" y2="30" stroke="#e4e3de" stroke-width="2"/><line x1="172.6" x2="172.6" y1="21" y2="39" stroke="#0ca30c" stroke-width="2"/><path d="M277.3,15 L287.3,15 L282.3,21 Z" fill="#e39400"/><circle cx="117.7" cy="30" r="4" fill="#fff" stroke="#9a9993" stroke-width="1.5"><title>{{年-月}}：{{大小与口径}}</title></circle><circle cx="172.6" cy="30" r="6.5" fill="#2a78d6" stroke="#fff" stroke-width="2"><title>{{年-月}}：{{大小与口径}}</title></circle><text x="8.0" y="53" class="sc" text-anchor="start" fill="#9a9993">{{轴下限}}</text><text x="392.0" y="53" class="sc" text-anchor="end" fill="#9a9993">{{轴上限}}</text><text x="172.6" y="11" class="sc" text-anchor="middle" fill="#0ca30c">随访线 {{值}}</text><text x="282.3" y="11" class="sc" text-anchor="middle" fill="#e39400">加查线 {{值}}</text></svg></div><div class="nt">{{各次大小与口径；<b>增长与否</b>；恶性概率与所落的档；类型}}</div></div>
+<!-- 筛查日历：行是部位，列是历次体检（.cr 的列数＝9 列日期，改列数要同步改 CSS 里 repeat(9,58px)）。
+  圆点：查了正常 #0ca30c；有发现要随访 #e39400；良性所见 #7fb77f；没做为白底灰边。有所见的点下面用 .ct 写一句。
+  行尾 .cs 色条：红 #d03b3b 缺口、橙 #e39400 随访、绿 #0ca30c 到位，写一句状态。 -->
+<div class="secondary"><h2>主要依据：按部位的筛查日历</h2>
+<div class="legend"><span><svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#0ca30c"/></svg> 查了，正常</span><span><svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#e39400"/></svg> 有发现，要随访</span><span><svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#7fb77f"/></svg> 良性所见</span><span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#fff" stroke="#e4e3de" stroke-width="1.5"/></svg> 没做</span><span>右侧色条：<b style="color:#d03b3b">红</b> 缺口 · <b style="color:#e39400">橙</b> 随访 · <b style="color:#0ca30c">绿</b> 到位</span></div>
+<div class="cr hd"><div></div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div class="ch">{{年-月}}</div><div></div></div>
+<div class="cr"><div class="nm">{{部位}}<div class="sub">{{筛查方法}}</div></div><div class="cc"><span class="cd" style="background:#0ca30c" title="{{结果}}"></span><div class="ct">{{结果}}</div></div><div class="cc"><span class="cd" style="background:#e39400" title="{{所见}}"></span><div class="ct">{{所见}}</div></div><div class="cc"><span class="cd" style="background:#7fb77f" title="{{良性所见}}"></span><div class="ct">{{良性所见}}</div></div><div class="cc"><span class="cd" style="border:1.5px solid #e4e3de;background:#fff"></span></div><div class="cc"><span class="cd" style="border:1.5px solid #e4e3de;background:#fff"></span></div><div class="cc"><span class="cd" style="border:1.5px solid #e4e3de;background:#fff"></span></div><div class="cc"><span class="cd" style="border:1.5px solid #e4e3de;background:#fff"></span></div><div class="cc"><span class="cd" style="border:1.5px solid #e4e3de;background:#fff"></span></div><div class="cc"><span class="cd" style="border:1.5px solid #e4e3de;background:#fff"></span></div><div class="cs" style="border-left:3px solid #e39400">{{随访中：一句状态}}</div></div>
+<!-- 另两种行尾色条：<div class="cs" style="border-left:3px solid #d03b3b">{{缺口：一句状态}}</div>、<div class="cs" style="border-left:3px solid #0ca30c">{{到位：一句状态}}</div> -->
+</div>
+<!-- 肿瘤标志物：参考区小行，.val 写本次值，走势小线只画报告参考上限（灰虚线，按最近一次报告的上限）。 -->
+<div class="secondary"><h2>参考：肿瘤标志物（不用于筛查，不单独定级）</h2><div class="row"><div class="nm">{{标志物}}<div class="sub">{{白话}}</div></div><div class="val">{{值}}<span class="u">{{单位}}</span></div><div class="sp"><svg width="120" height="34"><line x1="2" x2="118" y1="5.0" y2="5.0" stroke="#9a9993" stroke-dasharray="3 2"/><polyline fill="none" stroke="#9a9993" stroke-width="1.5" points="4.0,20.0 60.0,22.0 116.0,19.0"/><circle cx="116.0" cy="19.0" r="3.5" fill="#2a78d6"/></svg></div><div class="nt">{{一句；虚线为 年-月 报告上限 值}}</div></div></div>
+<div class="foot"><a href="#top">回到纵览 ↑</a> · 数据：{{来源}}。筛查年龄与人群取 checkup-planning 的年度清单；结节按「所见怎么判断」。癌症等级：{{等级}}，证据强度{{强/中/弱}}（{{确认状态}}）。</div>
+</section>
+
+<!-- ═══ 上游是其他骑士等级的节（dashboard.md「待评估」）：以 neuro 为例。上游行画等级胶囊加一句依据，不画子弹图；其余行照主要依据行的画法。
+  fit 节结构同 metab；待评估时流程卡写缺什么、怎么补，主要依据只放已有的上游数据，不画空子弹图。 ═══ -->
+<section id="neuro" class="sec">
+<div class="eyebrow">神经退行性 · {{确认状态}}</div>
+<h1>神经退行性：{{等级}}。{{原因}}</h1>
+<div class="next">下一步：{{事一}} · {{事二}}</div>
+<div class="flow">
+ <div class="card"><h3>本骑士的数据</h3><div class="q">认知症状、睡眠、听力、同型半胱氨酸，够不够定级</div><div class="chips"><span class="chip" style="border-color:#0ca30c"><b style="color:#0ca30c">✓</b> {{有的}}</span><span class="chip" style="border-color:#d03b3b"><b style="color:#d03b3b">?</b> {{缺的}}</span></div><div class="res"><b>{{够定级，或待评估}}</b></div></div>
+ <div class="card"><h3>底档：前两个骑士</h3><div class="q">{{规则一句}}</div><div class="chips"><span class="chip" style="border-color:#d9b400"><b style="color:#d9b400">!</b> 心脑血管：{{等级}}</span><span class="chip" style="border-color:#0ca30c"><b style="color:#0ca30c">✓</b> 代谢：{{等级}}</span></div><div class="res">{{推导}}<br><b>{{底档；待评估时写「参考推算：某档」}}</b></div></div>
+ <div class="card"><h3>调节</h3><div class="q">{{APOE 与本骑士数据有没有持续 🔴}}</div><div class="res"><b>{{一句}}</b></div></div>
+</div>
+<h2>主要依据</h2>
+<!-- 本骑士的数据照 metab 画子弹图行；底档每行画等级胶囊，待评估时 sub 写「参考推算」 -->
+<div class="row"><div class="nm">{{上游骑士}}<div class="sub">底档 · {{确认状态}}</div></div><div class="val"><span class="u"></span></div><div><span class="pill" style="background:#d9b400">{{等级}}</span></div><div></div><div class="nt">{{一句依据}}</div></div>
+<div class="foot"><a href="#top">回到纵览 ↑</a> · 数据：{{来源}}。{{推导规则，本 skill 取值照写}}。</div>
+</section>
+<!-- <section id="cardio" class="sec">…照 metab…</section>  <section id="fit" class="sec">…照 metab 或 neuro…</section> -->
+
+<!-- 全页总脚注 -->
+<div class="endfoot">等级从高到低：高、中、中低、低，资料不够为待评估；证据强度强、中、弱说的是资料够不够，不是风险大小。定级按 checkup-interpretation skill（Medicine 3.0：先看上游与器官，下游未达诊断阈值的单次值不定级）。本图用于健康管理参考，不是医疗诊断。</div>
+</div></html>

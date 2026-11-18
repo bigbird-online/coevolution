@@ -1,0 +1,5 @@
+form: skill
+declared_by: ken
+reason: |
+  markdown skill 主体：SKILL.md（读法、定级、流程、产出）与 references/（指标分档、看板画法）由 Agent 读后执行；
+  附 init.sh（建 user/，或链到 checkup-planning 的 user/）与 assets/ 模板，user/ 为运行时层不入库。

@@ -83,7 +83,7 @@ sudo sh setup-exit-node.sh
 
 腾讯云的 Ubuntu 镜像以 `ubuntu` 用户登录，所以前面加 `sudo`（以管理员身份运行）。脚本做五件事，重复运行也安全：
 
-1. 装 Tailscale，以及它用到的 curl、ethtool、iptables（已装的会升到最新版）。
+1. 装 Tailscale，以及它用到的 curl、ethtool、iptables；已装的不重装、不升级，所以重跑时连不上软件源也不影响。
 2. 打开 IPv4/IPv6 转发，TCP 拥塞控制改用 BBR（一种更快的拥塞控制算法）。
 3. 开机时打开网卡的 UDP GRO 转发（Tailscale 官方建议的提速项），并把经隧道的 TCP 包长夹到路径上限，防止大包卡死。
 4. 以出口节点身份加入你的 Tailscale：它打印一个链接，在浏览器里打开，用你自己的 Tailscale 账号登录，没有账号就在这一步注册。

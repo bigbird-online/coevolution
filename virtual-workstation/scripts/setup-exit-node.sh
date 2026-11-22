@@ -51,8 +51,12 @@ if [ "$CHECK" -eq 1 ]; then check; exit $?; fi
 
 echo "1/5 安装依赖与 Tailscale"
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -qq
-apt-get install -y -qq curl ethtool iptables >/dev/null
+missing=""
+for tool in curl ethtool iptables; do command -v "$tool" >/dev/null 2>&1 || missing="$missing $tool"; done
+if [ -n "$missing" ]; then
+  apt-get update -qq
+  apt-get install -y -qq $missing >/dev/null
+fi
 command -v tailscale >/dev/null 2>&1 || curl -fsSL https://tailscale.com/install.sh | sh
 
 echo "2/5 打开转发、改用 BBR"

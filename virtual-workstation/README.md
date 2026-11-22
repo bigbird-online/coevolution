@@ -1,6 +1,6 @@
 # virtual-workstation —— 虚拟工位
 
-**在国内用 ChatGPT、Grok 这类海外 AI 服务时，让电脑每次都从同一台你自己的美国云主机上网；登录 AI 账号前，先查一遍出口对不对、干不干净。**
+**在国内用 ChatGPT/Claude/Gemini、Grok 这类海外 AI 服务时，让电脑每次都从同一台你自己的美国云主机上网；登录 AI 账号前，先查一遍出口对不对、干不干净。**
 
 虚拟工位由三件东西组成：
 
@@ -14,7 +14,7 @@
 2. 注册美区 App Store ID（国家或地区选美国的 Apple ID）
 3. 装 Tailscale，把云主机开成出口
 4. 注册美区 PayPal
-5. 订阅 Muse、Grok、ChatGPT
+5. 订阅 Muse、Grok、ChatGPT/Claude/Gemini
 
 **最容易踩的坑在第 1 步：标着「美国」的云主机，IP 可能被定位成别国。买完先查，不是美国就换，再往下做。**
 
@@ -56,7 +56,7 @@
 | 省钱：只当出口 | 入门型 | 2 核 2G，40G SSD，峰值 20Mbps，每月 512GB | 30 元 |
 | 二档：还要装 Relay | 锐驰型 | 2 核 4G，60G SSD，峰值 200Mbps，流量不限 | 60 元 |
 
-月费是腾讯云官网 2026-11-11 更新的标准价，常有首年活动价，以下单页为准。只当出口，2G 内存足够：大鸟的同款出口整机只用约 0.5G。推荐锐驰型，是因为流量不限；入门型用完每月 512GB 后，硅谷每 GB 收 0.5 元。
+月费是腾讯云官网 2026-11-11 更新的标准价；新用户每年 99 元（2026-11-22），以下单页为准。只当出口，2G 内存足够：大鸟的同款出口整机只用约 0.5G。推荐锐驰型，是因为流量不限；入门型用完每月 512GB 后，硅谷每 GB 收 0.5 元。
 
 腾讯云的 IP 还有一点要知道：网络归属是腾讯，网站看得出这是腾讯云的机器，有的服务会因此提高风控。上面说的大鸟实测，只代表他的账号和用法。
 
@@ -130,11 +130,11 @@ python3 scripts/station.py init --ip 203.0.113.10 --label "我的 ChatGPT"
 
 为什么要：在美区 App Store 里订阅，付款方式要是美区的；美区 PayPal 能绑到第 2 步的 Apple ID 上。
 
-做法：先跑 `python3 scripts/station.py egress`，全部通过后，在 PayPal 美国站（https://www.paypal.com/us）注册个人账户，注册时就从美国出口上网；再在 Apple ID 的付款方式里加上它。要准备哪些资料，以 PayPal 的注册页为准。
+做法：先跑 `python3 scripts/station.py egress`，全部通过后，在 PayPal 美国站（https://www.paypal.com/us）注册个人账户，注册时就从美国出口上网；再在 Apple ID 的付款方式里加上它。要准备哪些资料，以 PayPal 的注册页为准。PayPal 美国用户协议（2026-09-14 版）要求开户人是美国或其属地居民、年满 18 岁；人在中国开户不符合这一条，账户可能被限制，读过协议、知道风险再开。
 
-### 第 5 步：订阅 Muse、Grok、ChatGPT
+### 第 5 步：订阅 Muse、Grok、ChatGPT/Claude/Gemini
 
-为什么要：Muse（Meta 出品）、Grok（xAI 出品）、ChatGPT（OpenAI 出品）是 Personal Agent（替你干活的个人 AI 助手）要用的 AI 服务；账号从注册起就只在这个出口登录，网站每次看到的都是同一个美国 IP。Claude 不在其中，留给以后的 Personal Agent Plus 服务包。
+为什么要：Muse（Meta 出品）、Grok（xAI 出品）、ChatGPT/Claude/Gemini（OpenAI、Anthropic、Google 出品）是 Personal Agent（替你干活的个人 AI 助手）要用的 AI 服务；账号从注册起就只在这个出口登录，网站每次看到的都是同一个美国 IP。
 
 做法：每次注册、登录、订阅前先跑 `station.py egress`，全部通过再操作。在 iPhone 上经 App Store 订阅，付款选第 4 步的 PayPal；在网页上订阅，付款方式以各家结账页为准。
 

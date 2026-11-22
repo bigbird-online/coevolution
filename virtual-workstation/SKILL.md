@@ -3,13 +3,13 @@ name: virtual-workstation
 description: >
   虚拟工位：把一台美国云主机开成 Tailscale 出口节点，让本人的电脑从这个固定出口用海外 AI 服务；
   登录 AI 账号前查出口对不对（egress），每周查出口干不干净、有没有泄漏（clean）。
-  本人说要搭美国出口、要用 ChatGPT、Grok 等海外订阅、问「现在能不能登录」「出口干不干净」，
+  本人说要搭美国出口、要用 ChatGPT/Claude/Gemini、Grok 等海外订阅、问「现在能不能登录」「出口干不干净」，
   或云主机重启、换了网络之后使用。只管网络出口，不注册、不登录任何账号。
 ---
 
 # 虚拟工位
 
-本 skill 由 Agent 执行，陪本人装好并查验一个固定的美国出口。部署顺序是：美国云主机 → 美区 App Store ID → Tailscale → 美区 PayPal → 订阅 Muse、Grok、ChatGPT。买哪家云、怎么选套餐、Apple ID 与 PayPal 的要点、手机怎么用、二档装 Relay 的底座，见同目录 `README.md`，照它向本人说明。
+本 skill 由 Agent 执行，陪本人装好并查验一个固定的美国出口。部署顺序是：美国云主机 → 美区 App Store ID → Tailscale → 美区 PayPal → 订阅 Muse、Grok、ChatGPT/Claude/Gemini。买哪家云、怎么选套餐、Apple ID 与 PayPal 的要点、手机怎么用、二档装 Relay 的底座，见同目录 `README.md`，照它向本人说明。
 
 ## 规矩
 

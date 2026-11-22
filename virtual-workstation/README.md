@@ -132,6 +132,18 @@ python3 scripts/station.py init --ip 203.0.113.10 --label "我的 ChatGPT"
 
 做法：先跑 `python3 scripts/station.py egress`，全部通过后，在 PayPal 美国站（https://www.paypal.com/us）注册个人账户，注册时就从美国出口上网；再在 Apple ID 的付款方式里加上它。要准备哪些资料，以 PayPal 的注册页为准。PayPal 美国用户协议（2026-09-14 版）要求开户人是美国或其属地居民、年满 18 岁；人在中国开户不符合这一条，账户可能被限制，读过协议、知道风险再开。
 
+网友的开户清单（X 上两篇中文经验帖整理：@0xValkyrie_ai 2026-05-17、@xmglab 2026-10-07；是当下做法，PayPal 随时会改）：
+
+- 从这台出口注册，之后也一直从它登录。
+- 准备一个美国手机号收验证码；网友用 Tello、Helium Mobile 等美国 eSIM（每月有月租）。
+- 邮箱用 Gmail 或 Outlook；国内邮箱常收不到验证邮件。
+- 姓名填真实拼音，和要绑的卡一致；账单地址填美国地址，前后保持一致。
+- 绑 Visa、Mastercard 等卡，持卡人姓名和 PayPal 一致；也可以先跳过，之后在钱包里加。
+- 确认邮箱；提示账户受限时，按提示上传带照片的证件。
+- 新账户先放一周左右再小额使用；别频繁换出口、换卡。
+
+自己动手难，按上文「大鸟陪着做」下单服务：服务号「大鸟聪聪」菜单「大鸟」→「大鸟小店」。
+
 ### 第 5 步：订阅 Muse、Grok、ChatGPT/Claude/Gemini
 
 为什么要：Muse（Meta 出品）、Grok（xAI 出品）、ChatGPT/Claude/Gemini（OpenAI、Anthropic、Google 出品）是 Personal Agent（替你干活的个人 AI 助手）要用的 AI 服务；账号从注册起就只在这个出口登录，网站每次看到的都是同一个美国 IP。

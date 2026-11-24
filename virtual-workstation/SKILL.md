@@ -9,7 +9,7 @@ description: >
 
 # 虚拟工位
 
-本 skill 由 Agent 执行，陪本人装好并查验一个固定的美国出口。部署顺序是：美国云主机 → 美区 App Store ID → Tailscale → 美区 PayPal → 订阅 Muse、Grok、ChatGPT。买哪家云、怎么选套餐、Apple ID 与 PayPal 的要点、手机怎么用、二档装 Relay 的底座，见同目录 `README.md`，照它向本人说明。
+本 skill 由 Agent 执行，陪本人装好并查验一个固定的美国出口。部署顺序是：美国云主机 → 美区 App Store ID → Tailscale → 美区 PayPal → 订阅 Personal Agent 要用的那一家 AI 服务。买哪家云、怎么选套餐、Apple ID 与 PayPal 的要点、手机怎么用、二档装 Relay 的底座，见同目录 `README.md`，照它向本人说明。
 
 ## 规矩
 

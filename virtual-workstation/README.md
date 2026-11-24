@@ -14,7 +14,7 @@
 2. 注册美区 App Store ID（国家或地区选美国的 Apple ID）
 3. 装 Tailscale，把云主机开成出口
 4. 注册美区 PayPal
-5. 订阅 Muse、Grok、ChatGPT
+5. 订阅你的 Personal Agent 要用的那一家 AI 服务
 
 **最容易踩的坑在第 1 步：标着「美国」的云主机，IP 可能被定位成别国。买完先查，不是美国就换，再往下做。**
 
@@ -132,9 +132,9 @@ python3 scripts/station.py init --ip 203.0.113.10 --label "我的 ChatGPT"
 
 做法：先跑 `python3 scripts/station.py egress`，全部通过后，在 PayPal 美国站（https://www.paypal.com/us）注册个人账户，注册时就从美国出口上网；再在 Apple ID 的付款方式里加上它。要准备哪些资料，以 PayPal 的注册页为准。
 
-### 第 5 步：订阅 Muse、Grok、ChatGPT
+### 第 5 步：订阅 Personal Agent 要用的 AI 服务
 
-为什么要：Muse（Meta 出品）、Grok（xAI 出品）、ChatGPT（OpenAI 出品）是 Personal Agent（替你干活的个人 AI 助手）要用的 AI 服务；账号从注册起就只在这个出口登录，网站每次看到的都是同一个美国 IP。Claude 不在其中，留给以后的 Personal Agent Plus 服务包。
+为什么要：Personal Agent（替你干活的个人 AI 助手）用哪一家的模型，就订阅哪一家，如 ChatGPT、Claude、Gemini、Grok；账号从注册起就只在这个出口登录，网站每次看到的都是同一个美国 IP。
 
 做法：每次注册、登录、订阅前先跑 `station.py egress`，全部通过再操作。在 iPhone 上经 App Store 订阅，付款选第 4 步的 PayPal；在网页上订阅，付款方式以各家结账页为准。
 
